@@ -111,7 +111,9 @@ def _parse_maven_coordinate_string(mvn_coord):
     group = pieces[0]
     artifact = pieces[1]
 
-    if len(pieces) == 3:
+    if len(pieces) == 2:
+        return { "group": group, "artifact": artifact }
+    elif len(pieces) == 3:
         version = pieces[2]
         return { "group": group, "artifact": artifact, "version": version }
     elif len(pieces) == 4:

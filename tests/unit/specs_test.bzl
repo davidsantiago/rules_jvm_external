@@ -62,6 +62,11 @@ def _parse_coordinate_test_impl(ctx):
     env = unittest.begin(ctx)
     asserts.equals(
         env,
+        { "group": "org.eclipse.aether", "artifact": "aether-api" },
+        parse.parse_maven_coordinate("org.eclipse.aether:aether-api")
+    )
+    asserts.equals(
+        env,
         { "group": "org.eclipse.aether", "artifact": "aether-api", "version": "1.1.0" },
         parse.parse_maven_coordinate("org.eclipse.aether:aether-api:1.1.0")
     )
