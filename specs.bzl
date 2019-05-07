@@ -215,10 +215,10 @@ def _artifact_spec_to_json(artifact_spec):
     exclusion_specs_json = (("[" + ", ".join(maybe_exclusion_specs_jsons) + "]") if len(maybe_exclusion_specs_jsons) > 0 else None)
 
     required = "{ \"group\": \"" + artifact_spec["group"] + \
-        "\", \"artifact\": \"" + artifact_spec["artifact"] + \
-        "\", \"version\": \"" + artifact_spec["version"] + "\""\
+        "\", \"artifact\": \"" + artifact_spec["artifact"] + "\""\
 
-    with_packaging = required + ((", \"packaging\": \"" + artifact_spec["packaging"] + "\"") if artifact_spec.get("packaging") != None else "")
+    with_version = required + ((", \"version\": \"" + artifact_spec["version"] + "\"") if artifact_spec.get("version") != None else "")
+    with_packaging = with_version + ((", \"packaging\": \"" + artifact_spec["packaging"] + "\"") if artifact_spec.get("packaging") != None else "")
     with_classifier = with_packaging + ((", \"classifier\": \"" + artifact_spec["classifier"] + "\"") if artifact_spec.get("classifier") != None else "")
     with_override_license_types = with_classifier + ((", " + _override_license_types_spec_to_json(artifact_spec["override_license_types"])) if artifact_spec.get("override_license_types") != None else "")
     with_exclusions = with_override_license_types + ((", \"exclusions\": " + exclusion_specs_json) if artifact_spec.get("exclusions") != None else "")

@@ -207,6 +207,11 @@ def _artifact_to_json_test_impl(ctx):
     env = unittest.begin(ctx)
     asserts.equals(
         env,
+        "{ \"group\": \"org.eclipse.aether\", \"artifact\": \"aether-api\" }",
+        json.write_artifact_spec({"group": "org.eclipse.aether", "artifact": "aether-api"})
+    )
+    asserts.equals(
+        env,
         "{ \"group\": \"org.eclipse.aether\", \"artifact\": \"aether-api\", \"version\": \"1.1.0\" }",
         json.write_artifact_spec({"group": "org.eclipse.aether", "artifact": "aether-api", "version": "1.1.0"})
     )
