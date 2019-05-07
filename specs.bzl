@@ -245,8 +245,9 @@ json = struct(
 # For example: `coursier fetch group:artifact:version,classifier=xxx,url=yyy`
 #
 def _artifact_to_coord(artifact):
+    version = (":%s" % artifact["version"]) if artifact.get("version") != None else ""
     classifier = (",classifier=" + artifact["classifier"]) if artifact.get("classifier") != None else ""
-    return artifact["group"] + ":" + artifact["artifact"] + ":" + artifact["version"] + classifier
+    return artifact["group"] + ":" + artifact["artifact"] + version + classifier
 
 def _repository_url(repository_spec):
     (protocol, remainder) = repository_spec["repo_url"].split("//")
